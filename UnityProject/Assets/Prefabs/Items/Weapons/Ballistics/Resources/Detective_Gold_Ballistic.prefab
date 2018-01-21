@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4078685264655768}
   - component: {fileID: 61418684701184482}
   - component: {fileID: 114514418339880956}
-  - component: {fileID: 114836095424701346}
+  - component: {fileID: 114855409686197490}
   - component: {fileID: 114840681176295264}
   - component: {fileID: 114793187246988634}
   - component: {fileID: 114859515791178996}
@@ -156,39 +156,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ad712be1fefd043b45761b18e23798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponType: 1
-  Projectile: {fileID: 1932369758612010, guid: 4bcdc5dec532a42dba701d5162dab2ba, type: 2}
-  ProjectileDamage: 11
-  ProjectileVelocity: 10
-  FireRate: 3
-  ProjectilesFired: 1
-  MaxRecoilVariance: 0
-  FireingSound: ShootSMG
   AmmoType: 357
-  FireCountDown: 0
-  InAutomaticAction: 0
   CurrentRecoilVariance: 0
---- !u!114 &114836095424701346
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1946347799520078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 1
-  m_SendInterval: 0.1
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
+  FireCountDown: 0
+  FireingSound: ShootGun01
+  FireRate: 3
+  InAutomaticAction: 0
+  MaxRecoilVariance: 0
+  Projectile: {fileID: 1932369758612010, guid: 008fa24b13fdb4e98971489ecee9218c, type: 2}
+  ProjectileDamage: 18
+  ProjectilesFired: 1
+  ProjectileVelocity: 10
+  WeaponType: 1
 --- !u!114 &114840681176295264
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -201,15 +180,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cloth: 0
+  clothingReference: -1
   hierarchy: 
-  itemName: Golden Revolver
+  inHandReferenceLeft: 112
+  inHandReferenceRight: 268
   itemDescription: 
+  itemName: Golden Revolver
+  size: 0
   spriteType: 2
   type: 16
-  inHandReferenceRight: 268
-  inHandReferenceLeft: 112
-  clothingReference: -1
-  size: 2
+--- !u!114 &114855409686197490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1946347799520078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 579884b05ae74e8499329b64997147d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpeedMultiplier: 1
+  isPushing: 0
+  predictivePushing: 0
 --- !u!114 &114859515791178996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -221,19 +214,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23c49138f42840a1bc22ade283c1694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visibleState: 1
   isPlayer: 0
   registerTile: {fileID: 0}
-  moveSpeed: 7
+  visibleState: 1
   allowedToMove: 1
+  currentPos: {x: 0, y: 0, z: 0}
   isPushable: 0
   pulledBy: {fileID: 0}
-  pushTarget: {x: 0, y: 0, z: 0}
   pushing: 0
-  serverLittleLag: 0
-  serverPos: {x: 0, y: 0, z: 0}
-  currentPos: {x: 0, y: 0, z: 0}
-  timeInPush: 0
+  pushTarget: {x: 0, y: 0, z: 0}
+  closetHandlerCache: {fileID: 0}
 --- !u!212 &212360716249096890
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4171709268409228}
   - component: {fileID: 61077017771495514}
   - component: {fileID: 114703404969080964}
-  - component: {fileID: 114236699697672602}
+  - component: {fileID: 114346683018347606}
   - component: {fileID: 114906344895876820}
   - component: {fileID: 114598204740365856}
   - component: {fileID: 114752816660759734}
@@ -101,7 +101,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114236699697672602
+--- !u!114 &114346683018347606
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -109,19 +109,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1167865368234136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 579884b05ae74e8499329b64997147d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 1
-  m_SendInterval: 0.1
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
+  SpeedMultiplier: 1
 --- !u!114 &114598204740365856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133,18 +124,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ad712be1fefd043b45761b18e23798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponType: 2
-  Projectile: {fileID: 1932369758612010, guid: 4bcdc5dec532a42dba701d5162dab2ba, type: 2}
-  ProjectileDamage: 10
-  ProjectileVelocity: 10
-  FireRate: 4
-  ProjectilesFired: 1
-  MaxRecoilVariance: 0
-  FireingSound: ShootSMG
   AmmoType: 46x30mmtT
-  FireCountDown: 0
-  InAutomaticAction: 0
   CurrentRecoilVariance: 0
+  FireCountDown: 0
+  FireingSound: ShootSMG
+  FireRate: 8
+  InAutomaticAction: 0
+  MaxRecoilVariance: 0.05
+  Projectile: {fileID: 1932369758612010, guid: 4bcdc5dec532a42dba701d5162dab2ba, type: 2}
+  ProjectileDamage: 8
+  ProjectilesFired: 1
+  ProjectileVelocity: 10
+  WeaponType: 2
 --- !u!114 &114703404969080964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -188,19 +179,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23c49138f42840a1bc22ade283c1694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visibleState: 1
   isPlayer: 0
   registerTile: {fileID: 0}
-  moveSpeed: 7
+  visibleState: 1
   allowedToMove: 1
-  isPushable: 0
-  pulledBy: {fileID: 0}
-  pushTarget: {x: 0, y: 0, z: 0}
-  pushing: 0
-  serverLittleLag: 0
-  serverPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
+  isPushable: 0
+  moveSpeed: 7
+  pulledBy: {fileID: 0}
+  pushing: 0
+  pushTarget: {x: 0, y: 0, z: 0}
+  serverLittleLag: 0
   timeInPush: 0
+  closetHandlerCache: {fileID: 0}
 --- !u!114 &114906344895876820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -213,15 +204,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cloth: 0
+  clothingReference: -1
   hierarchy: 
-  itemName: Emergency Response Gun
+  inHandReferenceLeft: 320
+  inHandReferenceRight: 104
   itemDescription: 
+  itemName: Emergency Response Gun
+  size: 2
   spriteType: 2
   type: 16
-  inHandReferenceRight: 104
-  inHandReferenceLeft: 320
-  clothingReference: -1
-  size: 0
 --- !u!114 &114959013130737060
 MonoBehaviour:
   m_ObjectHideFlags: 1

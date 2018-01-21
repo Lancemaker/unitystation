@@ -1,38 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Networking;
+﻿using UnityEngine.Networking;
 
 /// <summary>
-/// Headset properties
+///     Headset properties
 /// </summary>
 public class Headset : NetworkBehaviour
 {
-	[SyncVar]
-	public EncryptionKeyType EncryptionKey;
+	[SyncVar] public EncryptionKeyType EncryptionKey;
 
 	public void init()
 	{
 		getEncryptionTypeFromHier();
 	}
 
-	public void InsertEncryptionKey(EncryptionKey encryptionKeyComponent)
-	{
-		if (EncryptionKey != EncryptionKeyType.None)
-		{
-			UI.UIManager.Chat.AddChatEvent(new ChatEvent("This headset already has an encryption key", ChatChannel.System));
-			return;
-		}
-
-		EncryptionKey = encryptionKeyComponent.Type;
-		GameObject.Destroy(encryptionKeyComponent.gameObject);
-	}
-
 	private void getEncryptionTypeFromHier()
 	{
 		ItemAttributes attr = GetComponent<ItemAttributes>();
 
-		switch(attr.hierarchy)
+		switch (attr.hierarchy)
 		{
 			case "/obj/item/device/radio/headset":
 				EncryptionKey = EncryptionKeyType.Common;

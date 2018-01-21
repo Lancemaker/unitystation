@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4118331507209158}
   - component: {fileID: 61355786838506926}
   - component: {fileID: 114184922719460598}
-  - component: {fileID: 114297517411051912}
+  - component: {fileID: 114358810131581426}
   - component: {fileID: 114891067180309740}
   - component: {fileID: 114462994006981904}
   - component: {fileID: 114673342454476188}
@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 1887694972930660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4160258961686506}
   m_Father: {fileID: 0}
@@ -72,7 +72,7 @@ Transform:
   m_GameObject: {fileID: 1960548086557526}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children: []
   m_Father: {fileID: 4118331507209158}
   m_RootOrder: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
     i15: 198
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &114297517411051912
+--- !u!114 &114358810131581426
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -142,19 +142,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1887694972930660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 579884b05ae74e8499329b64997147d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 1
-  m_SendInterval: 0.1
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
+  SpeedMultiplier: 1
+  isPushing: 0
+  predictivePushing: 0
 --- !u!114 &114462994006981904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -167,15 +160,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cloth: 0
+  clothingReference: -1
   hierarchy: 
+  inHandReferenceLeft: 0
+  inHandReferenceRight: 0
+  itemDescription: Magazine for the Detective Revolver
   itemName: 38 Magnum Magazine
-  itemDescription: 
+  size: 0
   spriteType: 0
   type: 0
-  inHandReferenceRight: 0
-  inHandReferenceLeft: 0
-  clothingReference: -1
-  size: 0
 --- !u!114 &114595661855791112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -199,10 +192,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01cf0e4c6ebb4443a9ca96c6f09f22c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammoRemains: 6
   ammoType: 38
   magazineSize: 6
   Usable: 1
-  ammoRemains: 6
 --- !u!114 &114726631009728650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -225,19 +218,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23c49138f42840a1bc22ade283c1694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visibleState: 1
   isPlayer: 0
+  ignoredSpriteRenderers: []
   registerTile: {fileID: 0}
-  moveSpeed: 7
+  visibleState: 1
   allowedToMove: 1
+  currentPos: {x: 0, y: 0, z: 0}
   isPushable: 0
   pulledBy: {fileID: 0}
-  pushTarget: {x: 0, y: 0, z: 0}
   pushing: 0
-  serverLittleLag: 0
-  serverPos: {x: 0, y: 0, z: 0}
-  currentPos: {x: 0, y: 0, z: 0}
-  timeInPush: 0
+  pushTarget: {x: 0, y: 0, z: 0}
+  closetHandlerCache: {fileID: 0}
 --- !u!212 &212683567471066810
 SpriteRenderer:
   m_ObjectHideFlags: 1

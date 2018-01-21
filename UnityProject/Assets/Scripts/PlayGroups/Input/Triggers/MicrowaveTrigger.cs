@@ -1,79 +1,66 @@
-﻿using InputControl;
+﻿using System.Collections.Generic;
+using Crafting;
 using PlayGroup;
 using PlayGroups.Input;
 using UI;
 using UnityEngine;
 using UnityEngine.Networking;
-using Crafting;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Equipment;
-
 
 public class MicrowaveTrigger : InputTrigger
 {
-    private Microwave microwave;
-    void Start()
-    {
-        microwave = GetComponent<Microwave>();
-    }
+	private Microwave microwave;
 
-    public override void Interact(GameObject originator, Vector3 position, string hand)
-    {
-        if (!isServer)
-        {
-            var slot = UIManager.Hands.CurrentSlot;
+	private void Start()
+	{
+		microwave = GetComponent<Microwave>();
+	}
 
-            // Client pre-approval
-            if (!microwave.Cooking && slot.CanPlaceItem())
-            {
-                //Client informs server of interaction attempt
-                InteractMessage.Send(gameObject, position, slot.eventName);
-                //Client simulation
-                //              
-                //              if ( !waveOk )
-                //              {
-                //                  Debug.Log("Client placing error");
-                //              }
-            }
-        }
-        else
-        {   //Server actions
-            if (!ValidateMicrowaveInteraction(originator, position, hand))
-            {
-                //Rollback prediction here
-                //              originator.GetComponent<PlayerNetworkActions>().RollbackPrediction(hand);           
-            }
-        }
-    }
+	public override void Interact(GameObject originator, Vector3 position, string hand)
+	{
+		if (!isServer)
+		{
+			UI_ItemSlot slot = UIManager.Hands.CurrentSlot;
 
-    [Server]
-    private bool ValidateMicrowaveInteraction(GameObject originator, Vector3 position, string hand)
-    {
-        var ps = originator.GetComponent<PlayerScript>();
-        if (ps.canNotInteract() || !ps.IsInReach(position))
-        {
-            return false;
-        }
+			// Client pre-approval
+			if (!microwave.Cooking && slot.CanPlaceItem())
+			{
+				//Client informs server of interaction attempt
+				InteractMessage.Send(gameObject, position, slot.eventName);
+			}
+		}
+		else
+		{
+			ValidateMicrowaveInteraction(originator, position, hand);
+		}
+	}
 
-        GameObject item = ps.playerNetworkActions.Inventory[hand];
-        if (item == null) return false;
-        var attr = item.GetComponent<ItemAttributes>();
+	[Server]
+	private bool ValidateMicrowaveInteraction(GameObject originator, Vector3 position, string hand)
+	{
+		PlayerScript ps = originator.GetComponent<PlayerScript>();
+		if (ps.canNotInteract() || !ps.IsInReach(position))
+		{
+			return false;
+		}
 
-        var ingredient = new Ingredient(attr.itemName);
+		GameObject item = ps.playerNetworkActions.Inventory[hand];
+		if (item == null)
+		{
+			return false;
+		}
+		ItemAttributes attr = item.GetComponent<ItemAttributes>();
 
-        var meal = CraftingManager.Meals.FindRecipe(new List<Ingredient>() { ingredient });
+		Ingredient ingredient = new Ingredient(attr.itemName);
 
-        if (meal)
-        {
-            ps.playerNetworkActions.CmdStartMicrowave(hand, gameObject, meal.name);
-            item.BroadcastMessage("OnRemoveFromInventory", null, SendMessageOptions.DontRequireReceiver);
-        }
+		GameObject meal = CraftingManager.Meals.FindRecipe(new List<Ingredient> {ingredient});
+
+		if (meal)
+		{
+			ps.playerNetworkActions.CmdStartMicrowave(hand, gameObject, meal.name);
+			item.BroadcastMessage("OnRemoveFromInventory", null, SendMessageOptions.DontRequireReceiver);
+		}
 
 
-        return true;
-    }
-
-
+		return true;
+	}
 }

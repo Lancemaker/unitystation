@@ -1,14 +1,14 @@
 ﻿using System.Collections;
+using UI;
 using UnityEngine;
 using UnityEngine.Networking;
-using System;
-using UI;
 
 /// <summary>
-/// Removes Encryptionkey from a headset
+///     Removes Encryptionkey from a headset
 /// </summary>
-public class RemoveEncryptionKeyMessage : ClientMessage<RemoveEncryptionKeyMessage>
+public class RemoveEncryptionKeyMessage : ClientMessage
 {
+	public static short MessageType = (short) MessageTypes.RemoveEncryptionKeyMessage;
 	public GameObject HeadsetItem;
 
 	public override IEnumerator Process()
@@ -16,28 +16,20 @@ public class RemoveEncryptionKeyMessage : ClientMessage<RemoveEncryptionKeyMessa
 		yield return WaitFor(SentBy);
 
 		GameObject player = NetworkObject;
-
-		if(ValidRequest(HeadsetItem)) {
+		if (ValidRequest(HeadsetItem))
+		{
 			Headset headset = HeadsetItem.GetComponent<Headset>();
-			GameObject encryptionKey = GameObject.Instantiate(Resources.Load("Encryptionkey", typeof(GameObject)), HeadsetItem.transform.parent) as GameObject;
+			GameObject encryptionKey = Object.Instantiate(Resources.Load("Encryptionkey", typeof(GameObject)),HeadsetItem.transform.parent) as GameObject;
 			encryptionKey.GetComponent<EncryptionKey>().Type = headset.EncryptionKey;
-
-			PlayerNetworkActions pna = player.GetComponent<PlayerNetworkActions>();
-			string slot = UIManager.FindEmptySlotForItem(encryptionKey);
-			if (pna.AddItem(encryptionKey, slot)) {
-				NetworkServer.Spawn(encryptionKey);
-				headset.EncryptionKey = EncryptionKeyType.None;
-				pna.PlaceInSlot(encryptionKey, slot);
-			} else {
-				GameObject.Destroy(encryptionKey);
-				Debug.LogError("Could not add Encryptionkey item to player.");
-			}
+			//TODO when added interact with dropped headset, add encryption key to empty hand
+			headset.EncryptionKey = EncryptionKeyType.None;
+			ItemFactory.SpawnItem(encryptionKey, player.transform.position, player.transform.parent);
 		}
 	}
 
 	public static RemoveEncryptionKeyMessage Send(GameObject headsetItem)
 	{
-		var msg = new RemoveEncryptionKeyMessage
+		RemoveEncryptionKeyMessage msg = new RemoveEncryptionKeyMessage
 		{
 			HeadsetItem = headsetItem
 		};

@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4843565723770438}
   - component: {fileID: 61950167428446886}
   - component: {fileID: 114173451881615334}
-  - component: {fileID: 114569181287920238}
+  - component: {fileID: 114184990726307632}
   - component: {fileID: 114461506418144158}
   - component: {fileID: 114358469078938250}
   - component: {fileID: 114529648990615742}
@@ -68,8 +68,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1863058284462694}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.00000014901144, w: 1}
+  m_LocalPosition: {x: 34, y: 30, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4740587549331180}
@@ -133,6 +133,20 @@ MonoBehaviour:
     i15: 254
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &114184990726307632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1863058284462694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 579884b05ae74e8499329b64997147d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpeedMultiplier: 1
+  isPushing: 0
+  predictivePushing: 0
 --- !u!114 &114358469078938250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -144,18 +158,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ad712be1fefd043b45761b18e23798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponType: 1
-  Projectile: {fileID: 1932369758612010, guid: 4bcdc5dec532a42dba701d5162dab2ba, type: 2}
-  ProjectileDamage: 11
-  ProjectileVelocity: 10
-  FireRate: 3
-  ProjectilesFired: 1
-  MaxRecoilVariance: 0
-  FireingSound: ShootSMG
   AmmoType: 357
-  FireCountDown: 0
-  InAutomaticAction: 0
   CurrentRecoilVariance: 0
+  FireCountDown: 0
+  FireingSound: ShootGun01
+  FireRate: 3
+  InAutomaticAction: 0
+  MaxRecoilVariance: 0
+  Projectile: {fileID: 1932369758612010, guid: 008fa24b13fdb4e98971489ecee9218c, type: 2}
+  ProjectileDamage: 20
+  ProjectilesFired: 1
+  ProjectileVelocity: 10
+  WeaponType: 1
 --- !u!114 &114451834042202350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,15 +194,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cloth: 0
+  clothingReference: -1
   hierarchy: 
-  itemName: Revolver
+  inHandReferenceLeft: 112
+  inHandReferenceRight: 268
   itemDescription: 
+  itemName: Revolver
+  size: 0
   spriteType: 2
   type: 16
-  inHandReferenceRight: 268
-  inHandReferenceLeft: 112
-  clothingReference: -1
-  size: 2
 --- !u!114 &114529648990615742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -200,40 +214,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23c49138f42840a1bc22ade283c1694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visibleState: 1
   isPlayer: 0
   registerTile: {fileID: 0}
-  moveSpeed: 7
+  visibleState: 1
   allowedToMove: 1
+  currentPos: {x: 0, y: 0, z: 0}
   isPushable: 0
   pulledBy: {fileID: 0}
-  pushTarget: {x: 0, y: 0, z: 0}
   pushing: 0
-  serverLittleLag: 0
-  serverPos: {x: 0, y: 0, z: 0}
-  currentPos: {x: 0, y: 0, z: 0}
-  timeInPush: 0
---- !u!114 &114569181287920238
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1863058284462694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 1
-  m_SendInterval: 0.1
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
+  pushTarget: {x: 0, y: 0, z: 0}
+  closetHandlerCache: {fileID: 0}
 --- !u!212 &212338140982639740
 SpriteRenderer:
   m_ObjectHideFlags: 1
